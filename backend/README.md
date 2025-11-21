@@ -373,7 +373,8 @@ app.enableCors({
 - [ ] Containerize the application (Dockerfile)
 
 ## Troubleshooting
-Some of the most frequent errors I 
+Some of the most frequent errors I found and their fixes:
+
 ### Database Connection Issues
 
 If you encounter database connection errors:
