@@ -1,8 +1,13 @@
-import { Injectable, ConflictException } from '@nestjs/common';
+import {
+  Injectable,
+  ConflictException,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateCoffeeDto } from './dto/create-coffee.dto';
 import { Coffee } from './entities/coffee.entity';
+import { UpdateCoffeeDto } from './dto/update-coffee.dto';
 
 @Injectable()
 export class CoffeesService {
@@ -12,10 +17,15 @@ export class CoffeesService {
   ) {}
 
   async findAll(): Promise<Coffee[]> {
-    //1. Find all coffees and display them as coffees list
-    return this.coffeeRepository.find();
+    //1. Find all coffees and display them as coffees list, ordered by ID
+    return this.coffeeRepository.find({
+      order: {
+        id: 'ASC',
+      },
+    });
   }
 
+  //NEW COFFEE CREATION
   async create(createCoffeeDto: CreateCoffeeDto): Promise<Coffee> {
     //1. Check if this coffee already exists via name
     const existingCoffee = await this.coffeeRepository.findOne({
@@ -32,5 +42,35 @@ export class CoffeesService {
     //3. Create and save new coffee
     const coffee = this.coffeeRepository.create(createCoffeeDto);
     return this.coffeeRepository.save(coffee);
+  }
+
+  //UPDATE AN EXISTING COFFEE
+  async update(id: number, updateCoffeeDto: UpdateCoffeeDto): Promise<Coffee> {
+    // 1. Find the coffee by id
+    const existingCoffee = await this.coffeeRepository.findOne({
+      where: { id },
+    });
+    // 2. If not found, throw NotFoundException
+    if (!existingCoffee) {
+      throw new NotFoundException(`Coffee with id "${id}" does not exists`);
+    }
+    // 3. Merge the updates into the existing coffee
+    Object.assign(existingCoffee, updateCoffeeDto);
+    // 4. Save and return the updated coffee
+    return this.coffeeRepository.save(existingCoffee);
+  }
+
+  //DELETE COFFEE
+  async remove(id: number): Promise<Coffee> {
+    // 1. Find the coffee by id
+    const existingCoffee = await this.coffeeRepository.findOne({
+      where: { id: id },
+    });
+    // 2. If not found, throw NotFoundException
+    if (!existingCoffee) {
+      throw new NotFoundException(`Coffee with id "${id}" does not exists`);
+    }
+    // 3. Delete the coffee
+    return this.coffeeRepository.remove(existingCoffee);
   }
 }
