@@ -1,14 +1,15 @@
 import { Card } from '@/components/Card';
-import { fetchItems } from '@/services/fetchItems';
+import { Coffee } from '@/types/Coffee';
 
 export default async function Home() {
-  const items = await fetchItems();
+  const res = await fetch('http://localhost:4000/coffees');
+  const coffees: Coffee[] = await res.json();
 
   return (
     <main className='mx-10 mt-12 px-10'>
-      <h1 className='text-3xl mb-10'>You&apos;ve got this! 🚀</h1>
-      {items.map(({ id, title, description }) => (
-        <Card key={id} title={title} description={description} />
+      <h1 className='text-3xl mb-10'>Coffee List 🚀</h1>
+      {coffees.map(({ id, name, price, description, imageUrl }) => (
+        <Card key={id} name={name} price={price} description={description} imageUrl={imageUrl}/>
       ))}
     </main>
   );
