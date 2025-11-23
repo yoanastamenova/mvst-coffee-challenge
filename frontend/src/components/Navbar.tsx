@@ -5,7 +5,7 @@ import Button from "./Button";
 export const Navbar = () => {
   return (
     <nav className="sticky flex justify-between items-center top-0 z-50 bg-transparent shadow-md py-4">
-      <Link href="/" className="hover:opacity-80 px-6 block">
+      <Link href="/" className="hover:opacity-80 px-6 block ml-15">
         <Image
           src="/MVST_header.svg"
           width={167}
@@ -14,7 +14,7 @@ export const Navbar = () => {
         />
       </Link>
       <Link href="/create" className="hover:opacity-80 block">
-        <Button className="mr-5 mt-0">Create</Button>
+        <Button className="mr-20 mt-0">Create</Button>
       </Link>
     </nav>
   );
