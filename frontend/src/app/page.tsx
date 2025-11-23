@@ -2,7 +2,7 @@ import { Card } from '@/components/Card';
 import { Coffee } from '@/types/Coffee';
 
 export default async function Home() {
-  const res = await fetch('http://localhost:4000/coffees');
+  const res = await fetch(`${process.env.BACKEND_URL}/coffees`);
   const coffees: Coffee[] = await res.json();
 
   return (
