@@ -7,7 +7,7 @@ export default async function Home() {
 
   return (
     <main className='mx-10 mt-12 px-10'>
-      <h1 className='text-3xl mb-10'>Coffee List 🚀</h1>
+      <h1 className='text-3xl mb-10 text-white'>Coffee List 🚀</h1>
       {coffees.map(({ id, name, price, description, imageUrl }) => (
         <Card key={id} name={name} price={price} description={description} imageUrl={imageUrl}/>
       ))}
