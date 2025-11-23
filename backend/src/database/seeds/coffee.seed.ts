@@ -9,6 +9,9 @@ export async function seedCoffees(dataSource: DataSource): Promise<void> {
   if (existingCoffees > 0) {
     console.log('===== Clearing existing coffee data...=====');
     await coffeeRepository.clear();
+
+    // Reset the auto-increment sequence to start from 1
+    await dataSource.query(`ALTER SEQUENCE coffees_id_seq RESTART WITH 1;`);
     console.log('===== Cleared successfully! =====');
   }
 
