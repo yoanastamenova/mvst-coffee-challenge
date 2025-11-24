@@ -1,3 +1,5 @@
+'use client';
+
 import { Card } from "@/components/Card";
 import { Coffee } from "@/types/Coffee";
 import Image from "next/image";
@@ -6,13 +8,28 @@ import Footer from "../../public/MVST_footer.svg";
 import Beans from "../../public/beans.png";
 import Button from "@/components/Button";
 import { Poppins, Bebas_Neue } from "next/font/google";
+import Link from "next/link";
+import { useState, useEffect } from "react";
 
 const poppins = Poppins({ weight: ["300", "400"], subsets: ["latin"] });
 const bebas = Bebas_Neue({ weight: ["400"], subsets: ["latin"] });
 
-export default async function Home() {
-  const res = await fetch(`${process.env.BACKEND_URL}/coffees`);
-  const coffees: Coffee[] = await res.json();
+export default function Home() {
+  const [coffees, setCoffees] = useState<Coffee[]>([]);
+  const [selectedType, setSelectedType] = useState<string>("All");
+
+  useEffect(() => {
+    const fetchCoffees = async () => {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/coffees`);
+      const data = await res.json();
+      setCoffees(data);
+    };
+    fetchCoffees();
+  }, []);
+
+  const filteredCoffees = selectedType === "All"
+    ? coffees
+    : coffees.filter(coffee => coffee.type === selectedType);
 
   return (
     <>
@@ -48,7 +65,9 @@ export default async function Home() {
             </p>
 
             <div className="flex justify-center md:justify-start font-normal">
+              <Link href="/create"> 
               <Button>Create your own coffee</Button>
+              </Link>
             </div>
           </div>
         </div>
@@ -68,19 +87,34 @@ export default async function Home() {
           >
             <button
               type="button"
-              className={`${poppins.className} flex-1 text-base font-normal rounded-[33px] transition-all duration-200 bg-white text-black`}
+              onClick={() => setSelectedType("All")}
+              className={`${poppins.className} flex-1 text-base font-normal rounded-[33px] hover:cursor-pointer transition-all duration-200 ${
+                selectedType === "All"
+                  ? "bg-white text-black"
+                  : "text-white/60 hover:text-white"
+              }`}
             >
               All
             </button>
             <button
               type="button"
-              className={`${poppins.className} flex-1 text-base font-normal rounded-[33px] transition-all duration-200 text-white/60 hover:text-white`}
+              onClick={() => setSelectedType("Robusta")}
+              className={`${poppins.className} flex-1 text-base font-normal rounded-[33px] hover:cursor-pointer transition-all duration-200 ${
+                selectedType === "Robusta"
+                  ? "bg-white text-black"
+                  : "text-white/60 hover:text-white"
+              }`}
             >
               Robusta
             </button>
             <button
               type="button"
-              className={`${poppins.className} flex-1 text-base font-normal rounded-[33px] transition-all duration-200 text-white/60 hover:text-white`}
+              onClick={() => setSelectedType("Arabica")}
+              className={`${poppins.className} flex-1 text-base font-normal rounded-[33px] hover:cursor-pointer transition-all duration-200 ${
+                selectedType === "Arabica"
+                  ? "bg-white text-black"
+                  : "text-white/60 hover:text-white"
+              }`}
             >
               Arabica
             </button>
@@ -91,7 +125,7 @@ export default async function Home() {
       {/* Coffee List with Grid */}
       <section className="px-4 sm:px-6 md:px-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mx-auto max-w-7xl py-5">
-          {coffees.map(({ id, name, price, description, imageUrl, type }) => (
+          {filteredCoffees.map(({ id, name, price, description, imageUrl, type }) => (
             <div key={id}>
               <Card
                 name={name}
