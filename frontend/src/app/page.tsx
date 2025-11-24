@@ -42,13 +42,13 @@ export default async function Home() {
         </div>
 
         {/* MVST text with button group */}
-        <div className="mb-50">
+        <div className="mb-10">
           <h4 className="font-(family-name:--font-bebas) text-[50px] font-normal leading-[110px] text-white text-nowrap flex justify-center">
             MVST. EXCLUSIVE COFFEE
           </h4>
           <div className="flex justify-center mt-12">
             <div
-              className="inline-flex bg-badge-category rounded-[33px] p-1 w-[548px] h-[50px]"
+              className="inline-flex bg-badge-category rounded-[33px] p-1 w-[548px] h-[50px] -mt-10"
               role="group"
             >
               <button
@@ -67,21 +67,22 @@ export default async function Home() {
                 type="button"
                 className={`${poppins.className} flex-1 text-base font-normal rounded-[33px] transition-all duration-200 text-white/60 hover:text-white`}
               >
-                Arabic
+                Arabica
               </button>
             </div>
           </div>
         </div>
 
         {/* Coffee List with Grid */}
-        <div className="grid grid-cols-2 gap-2 mx-auto max-w-5xl px-8">
-          {coffees.map(({ id, name, price, description, imageUrl }) => (
+        <div className="grid grid-cols-3 gap-6 mx-auto max-w-7xl px-8 py-5">
+          {coffees.map(({ id, name, price, description, imageUrl, type }) => (
             <div key={id}>
               <Card
                 name={name}
                 price={price}
                 description={description}
                 imageUrl={imageUrl}
+                type={type}
               />
             </div>
           ))}

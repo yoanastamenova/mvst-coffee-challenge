@@ -4,4 +4,5 @@ export type Coffee = {
   price: number;
   description: string;
   imageUrl: string;
+  type: 'Arabica' | 'Robusta';
 };
