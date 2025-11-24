@@ -26,15 +26,50 @@ export default async function Home() {
         />
         <div
           className="relative mx-auto px-6 md:px-12 lg:px-20 grid grid-cols-1 lg:grid-cols-2 gap-12
-      items-center z-10 mb-300">
+      items-center z-10 mb-220"
+        >
           <div className="absolute top-60 w-170 h-60 left-10">
             <h1 className="font-(family-name:--font-bebas) text-[130px] font-normal leading-[110px] text-white text-nowrap">
-            ROASTED COFFEE
+              ROASTED COFFEE
             </h1>
-            <p className={`${poppins.className} text-[#938E8E] text-lg font-light sm:text-xl mb-6 mt-7`}>
+            <p
+              className={`${poppins.className} text-[#938E8E] text-lg font-light sm:text-xl mb-6 mt-7`}
+            >
               Choose a coffee from below or create your own.
             </p>
             <Button>Create your own coffee</Button>
+          </div>
+        </div>
+
+        {/* MVST text with button group */}
+        <div className="mb-50">
+          <h4 className="font-(family-name:--font-bebas) text-[50px] font-normal leading-[110px] text-white text-nowrap flex justify-center">
+            MVST. EXCLUSIVE COFFEE
+          </h4>
+          <div className="flex justify-center mt-12">
+            <div
+              className="inline-flex bg-[#3A3A3A] rounded-[33px] p-1 w-[548px] h-[50px]"
+              role="group"
+            >
+              <button
+                type="button"
+                className={`${poppins.className} flex-1 text-base font-normal rounded-[33px] transition-all duration-200 bg-white text-black`}
+              >
+                All
+              </button>
+              <button
+                type="button"
+                className={`${poppins.className} flex-1 text-base font-normal rounded-[33px] transition-all duration-200 text-white/60 hover:text-white`}
+              >
+                Robusta
+              </button>
+              <button
+                type="button"
+                className={`${poppins.className} flex-1 text-base font-normal rounded-[33px] transition-all duration-200 text-white/60 hover:text-white`}
+              >
+                Arabic
+              </button>
+            </div>
           </div>
         </div>
 

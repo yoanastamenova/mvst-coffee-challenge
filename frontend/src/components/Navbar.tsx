@@ -4,7 +4,7 @@ import Button from "./Button";
 
 export const Navbar = () => {
   return (
-    <nav className="sticky flex justify-between items-center top-0 z-50 bg-transparent shadow-md py-4">
+    <nav className="flex justify-between items-center top-0 z-50 bg-transparent py-10">
       <Link href="/" className="hover:opacity-80 px-6 block ml-15">
         <Image
           src="/MVST_header.svg"
