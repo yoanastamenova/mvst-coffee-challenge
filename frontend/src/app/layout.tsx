@@ -28,10 +28,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={bebasNeue.variable}>
-      <body className={inter.className}>
+      <body className={`${inter.className} overflow-x-hidden`}>
         <Background />
         <Navbar />
-        {children}
+        <main className="overflow-x-hidden">
+          {children}
+        </main>
       </body>
     </html>
   )
