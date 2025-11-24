@@ -2,6 +2,8 @@ import { Card } from "@/components/Card";
 import { Coffee } from "@/types/Coffee";
 import Image from "next/image";
 import Hero from "../../public/hero.jpg";
+import Footer from "../../public/MVST_footer.svg";
+import Beans from "../../public/beans.png";
 import Button from "@/components/Button";
 import { Poppins } from "next/font/google";
 
@@ -86,6 +88,62 @@ export default async function Home() {
               />
             </div>
           ))}
+        </div>
+
+        {/* Footer Section */}
+        <div className="relative mt-40 w-screen h-[500px] overflow-hidden left-0 -ml-[calc((100vw-100%)/2)]">
+          <div
+            className="absolute bottom-0 w-full h-[70%]"
+            style={{
+              backgroundImage: `url(${Beans.src})`,
+              backgroundRepeat: "repeat",
+              backgroundSize: "380px auto",
+              backgroundPosition: "0 0",
+            }}
+          />
+          <div
+            className="absolute bottom-0 w-full h-[65%]"
+            style={{
+              backgroundImage: `url(${Beans.src})`,
+              backgroundRepeat: "repeat",
+              backgroundSize: "370px auto",
+              backgroundPosition: "50px 30px",
+              transform: "rotate(180deg)",
+            }}
+          />
+          <div
+            className="absolute bottom-0 w-full h-[60%]"
+            style={{
+              backgroundImage: `url(${Beans.src})`,
+              backgroundRepeat: "repeat",
+              backgroundSize: "390px auto",
+              backgroundPosition: "100px 60px",
+            }}
+          />
+          <div
+            className="absolute bottom-0 w-full h-[55%]"
+            style={{
+              backgroundImage: `url(${Beans.src})`,
+              backgroundRepeat: "repeat",
+              backgroundSize: "360px auto",
+              backgroundPosition: "80px 40px",
+              transform: "scaleX(-1)",
+            }}
+          />
+          {/* Footer SVG */}
+          <div className="relative z-10 flex justify-center items-center h-full">
+            <Image alt="MVST footer" src={Footer} width={700} height={105} />
+          </div>
+
+          <div
+            className="absolute inset-0 w-full h-full z-20 pointer-events-none"
+            style={{
+              backgroundImage: `url(${Beans.src})`,
+              backgroundRepeat: "repeat",
+              backgroundSize: "420px auto",
+              backgroundPosition: "-40px 75px",
+            }}
+          />
         </div>
       </section>
     </>
