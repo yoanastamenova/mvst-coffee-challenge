@@ -14,7 +14,7 @@ export default async function Home() {
   return (
     <>
       {/*Hero Section with Image*/}
-      <section className="mx-10 mt-12 px-10">
+      <section className="mx-10 mt-12 px-10 after:content-[''] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-32 after:bg-linear-to-t after:from-background-primary after:to-transparent after:pointer-events-none after:z-0">
         <Image
           alt="CoffeeHero"
           src={Hero}
@@ -48,7 +48,7 @@ export default async function Home() {
           </h4>
           <div className="flex justify-center mt-12">
             <div
-              className="inline-flex bg-[#3A3A3A] rounded-[33px] p-1 w-[548px] h-[50px]"
+              className="inline-flex bg-badge-category rounded-[33px] p-1 w-[548px] h-[50px]"
               role="group"
             >
               <button
@@ -73,17 +73,19 @@ export default async function Home() {
           </div>
         </div>
 
-        {/* Coffee List with Cards */}
-        <div className="absolute inset-x-0 top-[100vh] -translate-y-full h-[600px] bg-linear-to-t from-black to-transparent pointer-events-none"></div>
-        {coffees.map(({ id, name, price, description, imageUrl }) => (
-          <Card
-            key={id}
-            name={name}
-            price={price}
-            description={description}
-            imageUrl={imageUrl}
-          />
-        ))}
+        {/* Coffee List with Grid */}
+        <div className="grid grid-cols-2 gap-2 mx-auto max-w-5xl px-8">
+          {coffees.map(({ id, name, price, description, imageUrl }) => (
+            <div key={id}>
+              <Card
+                name={name}
+                price={price}
+                description={description}
+                imageUrl={imageUrl}
+              />
+            </div>
+          ))}
+        </div>
       </section>
     </>
   );
