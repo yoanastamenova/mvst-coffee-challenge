@@ -1,5 +1,5 @@
 import { DataSource } from 'typeorm';
-import { Coffee } from '../../coffees/entities/coffee.entity';
+import { Coffee, CoffeeType } from '../../coffees/entities/coffee.entity';
 
 export async function seedCoffees(dataSource: DataSource): Promise<void> {
   const coffeeRepository = dataSource.getRepository(Coffee);
@@ -18,55 +18,46 @@ export async function seedCoffees(dataSource: DataSource): Promise<void> {
   // Inject coffee data
   const coffees = [
     {
-      name: 'Espresso',
-      description:
-        'A strong, concentrated coffee brewed by forcing hot water through finely-ground coffee beans.',
-      type: 'Hot',
-      price: 3.5,
-      imageUrl:
-        'https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?w=400',
-    },
-    {
-      name: 'Cappuccino',
-      description:
-        'An espresso-based drink with steamed milk foam, perfect for a morning boost.',
-      type: 'Hot',
-      price: 4.5,
-      imageUrl:
-        'https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=400',
-    },
-    {
-      name: 'Latte',
-      description: 'A smooth coffee drink made with espresso and steamed milk.',
-      type: 'Hot',
-      price: 4.75,
-      imageUrl:
-        'https://images.unsplash.com/photo-1561882468-9110e03e0f78?w=400',
+      name: 'Dark Roast',
+      description: 'Free in the MVST office',
+      type: CoffeeType.ARABICA,
+      price: 19.0,
+      imageUrl: 'https://ibb.co/nqFs35yV',
     },
     {
       name: 'Americano',
-      description:
-        'Espresso diluted with hot water for a lighter coffee experience.',
-      type: 'Hot',
-      price: 3.25,
-      imageUrl:
-        'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=400',
+      description: 'Free in the MVST office',
+      type: CoffeeType.ROBUSTA,
+      price: 20.0,
+      imageUrl: 'https://ibb.co/TBCftYtL',
     },
     {
-      name: 'Iced Coffee',
-      description: 'Refreshing cold brew served over ice.',
-      type: 'Cold',
-      price: 4.0,
-      imageUrl:
-        'https://images.unsplash.com/photo-1517487881594-2787fef5ebf7?w=400',
+      name: 'Cappucino',
+      description: 'Free in the MVST office',
+      type: CoffeeType.ARABICA,
+      price: 15.0,
+      imageUrl: 'https://ibb.co/nqFs35yV',
     },
     {
-      name: 'Mocha',
-      description: 'A chocolate-flavored variant of a caffè latte.',
-      type: 'Hot',
-      price: 5.0,
-      imageUrl:
-        'https://images.unsplash.com/photo-1607260550778-aa9d29444ce1?w=400',
+      name: 'Decaf Americano',
+      description: 'Free in the MVST office',
+      type: CoffeeType.ROBUSTA,
+      price: 20.0,
+      imageUrl: 'https://ibb.co/TBCftYtL',
+    },
+    {
+      name: 'Pine Roast',
+      description: 'Free in the MVST office',
+      type: CoffeeType.ARABICA,
+      price: 19.0,
+      imageUrl: 'https://ibb.co/nqFs35yV',
+    },
+    {
+      name: 'Raphael Original',
+      description: 'Free in the MVST office',
+      type: CoffeeType.ARABICA,
+      price: 15.0,
+      imageUrl: 'https://ibb.co/nqFs35yV',
     },
   ];
 

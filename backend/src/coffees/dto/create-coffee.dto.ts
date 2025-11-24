@@ -1,4 +1,6 @@
-import { IsString, IsNotEmpty, IsNumber, Min } from 'class-validator';
+import { IsString, IsNotEmpty, IsNumber, Min, IsEnum } from 'class-validator';
+import { CoffeeType } from '../entities/coffee.entity';
+
 export class CreateCoffeeDto {
   @IsString()
   @IsNotEmpty()
@@ -8,9 +10,10 @@ export class CreateCoffeeDto {
   @IsNotEmpty()
   description: string;
 
-  @IsString()
-  @IsNotEmpty()
-  type: string;
+  @IsEnum(CoffeeType, {
+    message: 'type must be either Arabica or Robusta',
+  })
+  type: CoffeeType;
 
   @IsNumber()
   @Min(0)

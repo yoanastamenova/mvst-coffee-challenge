@@ -13,7 +13,7 @@ const AppDataSource = new DataSource({
   password: process.env.DB_PASSWORD,
   database: process.env.DB_DATABASE,
   entities: [Coffee],
-  synchronize: true,
+  synchronize: true, // TODO: switch to false for deployment
 });
 
 async function runSeed() {
@@ -23,6 +23,11 @@ async function runSeed() {
     // Initialize connection
     await AppDataSource.initialize();
     console.log('--- Database connection established\n');
+
+    // Drop existing table and enum type to allow clean recreation
+    console.log('--- Dropping existing table if exists...\n');
+    await AppDataSource.query('DROP TABLE IF EXISTS "coffees" CASCADE;');
+    console.log('--- Table dropped successfully\n');
 
     // Run seeds
     await seedCoffees(AppDataSource);
