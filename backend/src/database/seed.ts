@@ -29,6 +29,11 @@ async function runSeed() {
     await AppDataSource.query('DROP TABLE IF EXISTS "coffees" CASCADE;');
     console.log('--- Table dropped successfully\n');
 
+    // Synchronize to recreate tables
+    console.log('--- Creating tables...\n');
+    await AppDataSource.synchronize();
+    console.log('--- Tables created successfully\n');
+
     // Run seeds
     await seedCoffees(AppDataSource);
 
