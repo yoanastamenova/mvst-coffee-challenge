@@ -136,7 +136,7 @@ export default function Home() {
       </section>
       {/* Footer Section */}
       <footer className="mt-40 overflow-hidden" aria-label="Page footer">
-        <div className="relative w-full h-[100px] sm:h-[400px] md:h-[500px] overflow-hidden">
+        <div className="relative w-full h-[180px] sm:h-[200px] md:h-[220px] overflow-hidden">
           <div
             className="absolute bottom-0 w-full h-[70%]"
             style={{
