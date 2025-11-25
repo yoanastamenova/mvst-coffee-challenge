@@ -49,7 +49,7 @@ export default function Home() {
       <Navbar />
       {showAlert && <Alert onClose={() => setShowAlert(false)} />}
       {/* Hero Section */}
-      <section className="relative h-[500px] sm:h-[600px] md:h-[700px] lg:h-[800px] max-w-full overflow-x-hidden">
+      <section className="relative h-[500px] sm:h-[600px] md:h-[700px] lg:h-[800px] max-w-full overflow-x-hidden" aria-label="Hero section with roasted coffee introduction">
         <div className="absolute inset-0 after:content-[''] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-32 after:bg-linear-to-t after:from-background-primary after:to-transparent after:pointer-events-none after:z-10">
           <Image
             alt="CoffeeHero"
@@ -83,16 +83,17 @@ export default function Home() {
         </div>
       </section>
       {/* MVST Text + Button Group */}
-      <section className="mb-10 mt-20 md:mt-30 px-4">
-        <h4
+      <section className="mb-10 mt-20 md:mt-30 px-4" aria-label="Coffee type filter">
+        <h2
           className={`${bebas.className} text-3xl sm:text-4xl md:text-[50px] font-normal leading-tight md:leading-[110px] text-white flex justify-center text-center`}
         >
           MVST. EXCLUSIVE COFFEE
-        </h4>
+        </h2>
         <div className="flex justify-center mt-8 md:mt-12">
           <div
             className="inline-flex bg-badge-category rounded-[33px] p-1 w-full max-w-[548px] h-[50px] -mt-6 md:-mt-10"
             role="group"
+            aria-label="Filter coffees by type"
           >
             {["All", "Robusta", "Arabica"].map((type) => (
               <button
@@ -106,6 +107,8 @@ export default function Home() {
                     ? "bg-white text-black"
                     : "text-white/60 hover:text-white"
                 }`}
+                aria-pressed={selectedType === type}
+                aria-label={`Filter by ${type} coffee`}
               >
                 {type}
               </button>
@@ -114,11 +117,11 @@ export default function Home() {
         </div>
       </section>
       {/* Coffee List Grid */}
-      <section className="px-4 sm:px-6 md:px-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mx-auto max-w-7xl py-5">
+      <section className="px-4 sm:px-6 md:px-8" aria-label="Coffee products list">
+        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mx-auto max-w-7xl py-5 list-none">
           {filteredCoffees.map(
             ({ id, name, price, description, imageUrl, type }) => (
-              <div key={id}>
+              <li key={id}>
                 <Card
                   name={name}
                   price={price}
@@ -126,13 +129,13 @@ export default function Home() {
                   imageUrl={imageUrl}
                   type={type}
                 />
-              </div>
+              </li>
             )
           )}
-        </div>
+        </ul>
       </section>
       {/* Footer Section */}
-      <section className="mt-40 overflow-hidden">
+      <footer className="mt-40 overflow-hidden" aria-label="Page footer">
         <div className="relative w-full h-[100px] sm:h-[400px] md:h-[500px] overflow-hidden">
           <div
             className="absolute bottom-0 w-full h-[70%]"
@@ -163,7 +166,7 @@ export default function Home() {
             }}
           />
           <div
-            className="hidden md:block absolute bottom-0 w-full h-[55%]"
+            className="absolute bottom-0 w-full h-[55%]"
             style={{
               backgroundImage: `url(${Beans.src})`,
               backgroundRepeat: "repeat",
@@ -192,7 +195,7 @@ export default function Home() {
             }}
           />
         </div>
-      </section>
+      </footer>
     </>
   );
 }

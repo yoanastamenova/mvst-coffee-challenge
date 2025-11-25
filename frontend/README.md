@@ -71,20 +71,33 @@ BACKEND_URL=http://localhost:4000
 ## Running the Application
 
 1. Ensure the backend server is running (see [Backend README](../backend/README.md))
-2. Start the development server:
+2. Start the development server for the frontend in the root:
 ```bash
 npm run dev
 ```
 3. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-The app will automatically reload when you make changes to the code.
+## Features
 
-## Views
+### 1. Coffee List View
+- Displays all coffees from the backend API
+- Filter by coffee type (All, Arabica, Robusta)
+- Responsive grid layout (1 column mobile, 3 desktop)
+- Coffee cards with image, name, price, description, and type badge
+
+### 2. Create Coffee Form
+- Form to add new coffee with validation
+- Fields: Name, Price, Type (Arabica/Robusta), Image URL, Description
+- Duplicate name validation (shows alert if name exists)
+- Mobile-responsive design
+
+
 ## Future Improvements
 
 - [ ] Add comprehensive unit and e2e tests
+- [ ] Add animations with Framer Motion
 - [ ] Implement pagination for coffee list
-- [ ] Add filtering and search capabilities
+- [ ] Add delete/edit functionality for coffees
 - [ ] Containerize the application (Dockerfile)
 
 
