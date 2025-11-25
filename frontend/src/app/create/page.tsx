@@ -101,8 +101,8 @@ export default function CreatePage() {
   return (
     <>
       <section className="min-h-screen relative overflow-hidden">
-        <div className="flex flex-col items-center justify-center px-12 py-12 mx-auto min-h-screen lg:py-0">
-          <div className="w-full min-h-[700px] bg-[#191919] shadow-xl border-[#838382] md:mt-0 sm:max-w-xl lg:max-w-2xl xl:p-0 relative overflow-hidden">
+        <div className="flex flex-col items-center justify-center px-4 sm:px-12 py-12 mx-auto min-h-screen lg:py-0">
+          <div className="w-full min-h-[700px] bg-transparent sm:bg-[#191919] shadow-none sm:shadow-xl border-none sm:border-[#838382] md:mt-0 sm:max-w-xl lg:max-w-2xl xl:p-0 relative overflow-hidden">
             {/* X button */}
             <button
               onClick={handleDiscard}
@@ -129,11 +129,10 @@ export default function CreatePage() {
               <h1 className={`${bebas.className} text-5xl font-bold text-white text-center`}>
                 CREATE NEW
               </h1>
-
               <form onSubmit={handleSubmit} className="space-y-5 max-w-md mx-auto">
                 {/* Name and Price */}
-                <div className="flex gap-4 items-end">
-                  <div className="flex-1">
+                <div className="flex flex-col sm:flex-row sm:items-end gap-4">
+                  <div className="flex-1 w-full sm:w-auto">
                     <label htmlFor="name" className={`${dmSans.className} block mb-2 text-sm font-normal text-[#b8b8b8]`}>
                       Name
                     </label>
@@ -149,7 +148,7 @@ export default function CreatePage() {
                       autoComplete="off"
                     />
                   </div>
-                  <div className="w-28">
+                  <div className="w-full sm:w-28">
                     <label htmlFor="price" className={`${dmSans.className} block mb-2 text-sm font-normal text-[#b8b8b8]`}>
                       Price
                     </label>
@@ -240,19 +239,23 @@ export default function CreatePage() {
                 </div>
 
                 {/* Action Buttons */}
-                <div className="flex gap-4 justify-center items-center pt-6 max-w-xs mx-auto">
+                <div className="flex flex-col sm:flex-row sm:items-end gap-4 justify-center items-center pt-6 max-w-xs mx-auto">
                   <button
                     type="button"
                     onClick={handleDiscard}
                     disabled={isSubmitting}
-                    className="text-white border border-[#ba8039] hover:bg-[#3a3a3a] hover:cursor-pointer font-normal rounded-full text-sm px-8 py-3 text-center disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                    className="text-white border border-[#ba8039] hover:bg-[#3a3a3a] 
+                    hover:cursor-pointer font-normal rounded-full text-sm px-8 py-3
+                    w-full sm:w-28 text-center disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                   >
                     Discard
                   </button>
                   <button
                     type="submit"
                     disabled={isSubmitting || !formData.name || !formData.description || !formData.price || !formData.imageUrl || !selectedType}
-                    className="text-white bg-[#ba8039] hover:bg-[#a56f30] hover:cursor-pointer font-normal rounded-full text-sm px-8 py-3 text-center disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                    className="text-white bg-[#ba8039] hover:bg-[#a56f30] hover:cursor-pointer 
+                    font-normal rounded-full text-sm px-8 py-3 text-center disabled:opacity-50 
+                    w-full sm:w-28 disabled:cursor-not-allowed transition-all"
                   >
                     {isSubmitting ? "Creating..." : "Confirm"}
                   </button>
@@ -261,7 +264,7 @@ export default function CreatePage() {
             </div>
 
             {/* Beans Decoration */}
-            <div className="absolute bottom-7 -left-25 pointer-events-none z-0">
+            <div className="hidden sm:block absolute bottom-7 -left-25 pointer-events-none z-0">
               <Image
                 src={Beans}
                 width={250}

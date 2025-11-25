@@ -69,7 +69,7 @@ export default function Home() {
 
             <p
               className={`${poppins.className} text-[#938E8E] text-sm sm:text-sm md:text-base lg:text-lg font-light leading-relaxed mb-4
-                      w-full max-w-[200px] sm:max-w-none break-words whitespace-normal text-balance`}
+                      w-full max-w-[200px] sm:max-w-none wrap-break-word whitespace-normal text-balance`}
             >
               Choose a coffee from below or create your own.
             </p>
