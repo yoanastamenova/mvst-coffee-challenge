@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { Card } from "@/components/Card";
 import { Coffee } from "@/types/Coffee";
@@ -10,6 +10,9 @@ import Button from "@/components/Button";
 import { Poppins, Bebas_Neue } from "next/font/google";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
+import Alert from "@/components/Alert";
+import { Navbar } from "@/components/Navbar";
 
 const poppins = Poppins({ weight: ["300", "400"], subsets: ["latin"] });
 const bebas = Bebas_Neue({ weight: ["400"], subsets: ["latin"] });
@@ -17,6 +20,9 @@ const bebas = Bebas_Neue({ weight: ["400"], subsets: ["latin"] });
 export default function Home() {
   const [coffees, setCoffees] = useState<Coffee[]>([]);
   const [selectedType, setSelectedType] = useState<string>("All");
+  const [showAlert, setShowAlert] = useState(false);
+  const searchParams = useSearchParams();
+  const errorType = searchParams.get("error");
 
   useEffect(() => {
     const fetchCoffees = async () => {
@@ -27,53 +33,56 @@ export default function Home() {
     fetchCoffees();
   }, []);
 
-  const filteredCoffees = selectedType === "All"
-    ? coffees
-    : coffees.filter(coffee => coffee.type === selectedType);
+  useEffect(() => {
+    if (errorType === "name-exists") {
+      setShowAlert(true);
+    }
+  }, [errorType]);
+
+  const filteredCoffees =
+    selectedType === "All"
+      ? coffees
+      : coffees.filter((coffee) => coffee.type === selectedType);
 
   return (
     <>
-      {/*Hero Section with Image*/}
+      <Navbar />
+      {showAlert && <Alert onClose={() => setShowAlert(false)} />}
+      {/* Hero Section */}
       <section className="relative h-[500px] sm:h-[600px] md:h-[700px] lg:h-[800px] max-w-full overflow-x-hidden">
         <div className="absolute inset-0 after:content-[''] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-32 after:bg-linear-to-t after:from-background-primary after:to-transparent after:pointer-events-none after:z-10">
           <Image
             alt="CoffeeHero"
             src={Hero}
             fill
-            style={{
-              objectFit: "cover",
-            }}
-            className="brightness-40"
+            className="brightness-40 object-cover"
           />
         </div>
-
-        {/* Hero Content */}
-        <div className="relative z-20 pt-15 h-full flex items-center justify-center md:justify-start px-6 sm:px-10 md:px-16 lg:px-20 overflow-hidden">
-          <div className="w-full md:max-w-[680px] text-center md:text-left mt-10 md:ml-10">
+        <div className="relative z-20 pt-15 h-full flex items-center justify-center md:justify-start px-6 sm:px-10 md:px-16 lg:px-20 overflow-hidden min-w-0">
+          <div className="w-full md:max-w-[680px] text-center md:text-left mt-10 md:ml-10 min-w-0 flex flex-col items-center md:items-start">
             <h1
-              className={`${bebas.className} text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[130px] font-normal leading-tight sm:leading-[1.1] md:leading-[110px] text-white mb-4 sm:mb-6`}
-              style={{ wordWrap: 'break-word', overflowWrap: 'break-word', whiteSpace: 'normal', wordBreak: 'break-word' }}
+              className={`${bebas.className} text-7xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[130px] font-normal leading-tight text-white mb-4
+                      w-full max-w-[220px] sm:max-w-none`}
             >
               ROASTED COFFEE
             </h1>
 
             <p
-              className={`${poppins.className} text-[#938E8E] text-xs sm:text-sm md:text-base lg:text-lg font-light leading-relaxed mb-4 md:mb-6 max-w-xs sm:max-w-sm md:max-w-md mx-auto md:mx-0`}
-              style={{ wordWrap: 'break-word', overflowWrap: 'break-word', whiteSpace: 'normal', wordBreak: 'break-word' }}
+              className={`${poppins.className} text-[#938E8E] text-sm sm:text-sm md:text-base lg:text-lg font-light leading-relaxed mb-4
+                      w-full max-w-[200px] sm:max-w-none break-words whitespace-normal text-balance`}
             >
               Choose a coffee from below or create your own.
             </p>
 
             <div className="flex justify-center md:justify-start font-normal">
-              <Link href="/create"> 
-              <Button>Create your own coffee</Button>
+              <Link href="/create">
+                <Button>Create your own coffee</Button>
               </Link>
             </div>
           </div>
         </div>
       </section>
-
-      {/* MVST text with button group */}
+      {/* MVST Text + Button Group */}
       <section className="mb-10 mt-15 md:mt-30 px-4">
         <h4
           className={`${bebas.className} text-3xl sm:text-4xl md:text-[50px] font-normal leading-tight md:leading-[110px] text-white flex justify-center text-center`}
@@ -85,60 +94,43 @@ export default function Home() {
             className="inline-flex bg-badge-category rounded-[33px] p-1 w-full max-w-[548px] h-[50px] -mt-6 md:-mt-10"
             role="group"
           >
-            <button
-              type="button"
-              onClick={() => setSelectedType("All")}
-              className={`${poppins.className} flex-1 text-base font-normal rounded-[33px] hover:cursor-pointer transition-all duration-200 ${
-                selectedType === "All"
-                  ? "bg-white text-black"
-                  : "text-white/60 hover:text-white"
-              }`}
-            >
-              All
-            </button>
-            <button
-              type="button"
-              onClick={() => setSelectedType("Robusta")}
-              className={`${poppins.className} flex-1 text-base font-normal rounded-[33px] hover:cursor-pointer transition-all duration-200 ${
-                selectedType === "Robusta"
-                  ? "bg-white text-black"
-                  : "text-white/60 hover:text-white"
-              }`}
-            >
-              Robusta
-            </button>
-            <button
-              type="button"
-              onClick={() => setSelectedType("Arabica")}
-              className={`${poppins.className} flex-1 text-base font-normal rounded-[33px] hover:cursor-pointer transition-all duration-200 ${
-                selectedType === "Arabica"
-                  ? "bg-white text-black"
-                  : "text-white/60 hover:text-white"
-              }`}
-            >
-              Arabica
-            </button>
+            {["All", "Robusta", "Arabica"].map((type) => (
+              <button
+                key={type}
+                type="button"
+                onClick={() => setSelectedType(type)}
+                className={`${
+                  poppins.className
+                } flex-1 text-base font-normal rounded-[33px] hover:cursor-pointer transition-all duration-200 ${
+                  selectedType === type
+                    ? "bg-white text-black"
+                    : "text-white/60 hover:text-white"
+                }`}
+              >
+                {type}
+              </button>
+            ))}
           </div>
         </div>
       </section>
-
-      {/* Coffee List with Grid */}
+      {/* Coffee List Grid */}
       <section className="px-4 sm:px-6 md:px-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mx-auto max-w-7xl py-5">
-          {filteredCoffees.map(({ id, name, price, description, imageUrl, type }) => (
-            <div key={id}>
-              <Card
-                name={name}
-                price={price}
-                description={description}
-                imageUrl={imageUrl}
-                type={type}
-              />
-            </div>
-          ))}
+          {filteredCoffees.map(
+            ({ id, name, price, description, imageUrl, type }) => (
+              <div key={id}>
+                <Card
+                  name={name}
+                  price={price}
+                  description={description}
+                  imageUrl={imageUrl}
+                  type={type}
+                />
+              </div>
+            )
+          )}
         </div>
       </section>
-
       {/* Footer Section */}
       <section className="mt-40 overflow-hidden">
         <div className="relative w-full h-[300px] sm:h-[400px] md:h-[500px] overflow-hidden">
@@ -181,6 +173,7 @@ export default function Home() {
             }}
           />
           {/* Footer SVG */}
+
           <div className="relative z-10 flex justify-center items-center h-full px-4">
             <Image
               alt="MVST footer"

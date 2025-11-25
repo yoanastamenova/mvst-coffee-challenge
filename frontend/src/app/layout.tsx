@@ -1,4 +1,3 @@
-import { Navbar } from '@/components/Navbar'
 import './globals.css'
 import { Bebas_Neue, Inter } from 'next/font/google'
 import Background from '@/components/Background'
@@ -30,7 +29,6 @@ export default function RootLayout({
     <html lang="en" className={bebasNeue.variable}>
       <body className={`${inter.className} overflow-x-hidden`}>
         <Background />
-        <Navbar />
         <main className="overflow-x-hidden">
           {children}
         </main>

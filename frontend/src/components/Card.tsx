@@ -28,7 +28,7 @@ export const Card = ({ name, description, price, imageUrl, type }: Props) => {
           {type}
         </button>
       </div>
-      <div className="flex flex-col flex-1 gap-8 justify-start -mt-2">
+      <div className="flex flex-col flex-1 gap-8 justify-center">
         <div className="relative w-full flex items-center justify-center h-60">
           <Image
             src={imageUrl}
