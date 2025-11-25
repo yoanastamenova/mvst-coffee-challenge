@@ -1,109 +1,274 @@
+"use client";
+
+import Image from "next/image";
+import Beans from "../../../public/beans.png";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { Bebas_Neue, DM_Sans } from "next/font/google";
+
+const bebas = Bebas_Neue({ weight: ["400"], subsets: ["latin"] });
+const dmSans = DM_Sans({ weight: ["400", "500"], subsets: ["latin"] });
+
+type CoffeeType = "Arabica" | "Robusta";
+
 export default function CreatePage() {
+  const router = useRouter();
+  const [formData, setFormData] = useState({
+    name: "",
+    description: "",
+    price: "",
+    imageUrl: "",
+  });
+  const [selectedType, setSelectedType] = useState<CoffeeType | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleTypeSelect = (type: CoffeeType) => {
+    setSelectedType(type);
+  };
+
+  const handleDiscard = () => {
+    router.push("/");
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (
+      !formData.name ||
+      !formData.description ||
+      !formData.price ||
+      !formData.imageUrl ||
+      !selectedType
+    ) {
+      alert("Please fill in all fields");
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/coffees/new`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: formData.name,
+            description: formData.description,
+            type: selectedType,
+            price: parseFloat(formData.price),
+            imageUrl: formData.imageUrl,
+          }),
+        }
+      );
+
+      if (response.status === 409) {
+        router.push("/?error=name-exists");
+        return;
+      }
+
+      if (!response.ok) {
+        throw new Error("Failed to create coffee");
+      }
+
+      router.push("/");
+    } catch (error) {
+      console.error("Error creating coffee:", error);
+      alert("Failed to create coffee. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const getInputClasses = (hasValue: boolean) => {
+    return `${dmSans.className} w-full px-3 py-2 text-sm rounded-lg border border-[#838382] bg-[#2d2d2d] transition-colors duration-200 outline-none focus:outline-none focus:ring-0 ${
+      hasValue
+        ? "text-white"
+        : "text-[#9ca3af]"
+    } placeholder-[#888888]`;
+  };
+
   return (
     <>
-      <section className="min-h-screen">
-        <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-          <div className="w-full bg-[#191919] rounded-lg shadow-xl border border-[##838382] md:mt-0 sm:max-w-md xl:p-0">
-            <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-              <h1 className="font-(family-name:--font-bebas) text-3xl font-bold text-white">
+      <section className="min-h-screen relative overflow-hidden">
+        <div className="flex flex-col items-center justify-center px-12 py-12 mx-auto min-h-screen lg:py-0">
+          <div className="w-full min-h-[700px] bg-[#191919] shadow-xl border-[#838382] md:mt-0 sm:max-w-xl lg:max-w-2xl xl:p-0 relative overflow-hidden">
+            {/* X button */}
+            <button
+              onClick={handleDiscard}
+              className="absolute top-6 right-6 text-white hover:text-gray-300 transition-colors z-20 hover:cursor-pointer"
+              aria-label="Close"
+            >
+              <svg
+                width="28"
+                height="28"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+
+            {/* Title */}
+            <div className="p-8 py-20 space-y-6 sm:p-10 sm:py-16 md:px-16 lg:px-20">
+              <h1 className={`${bebas.className} text-5xl font-bold text-white text-center`}>
                 CREATE NEW
               </h1>
-              <form className="space-y-4 md:space-y-6" action="#">
+
+              <form onSubmit={handleSubmit} className="space-y-5 max-w-md mx-auto">
+                {/* Name and Price */}
                 <div className="flex gap-4 items-end">
                   <div className="flex-1">
-                    <label
-                      htmlFor="name"
-                      className="block mb-2 text-sm font-medium text-[#b8b8b8]"
-                    >
+                    <label htmlFor="name" className={`${dmSans.className} block mb-2 text-sm font-normal text-[#b8b8b8]`}>
                       Name
                     </label>
                     <input
                       type="text"
                       name="name"
                       id="name"
-                      className="bg-[#3a3a3a] border border-[#525252] text-[#f0f0f0] text-sm rounded-lg block w-full p-2.5 placeholder-[#888888]"
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      className={getInputClasses(!!formData.name)}
                       placeholder="Name your coffee here"
+                      required
+                      autoComplete="off"
                     />
                   </div>
-                  <div className="w-24">
-                    <label
-                      htmlFor="price"
-                      className="block mb-2 text-sm font-medium text-[#b8b8b8]"
-                    >
+                  <div className="w-28">
+                    <label htmlFor="price" className={`${dmSans.className} block mb-2 text-sm font-normal text-[#b8b8b8]`}>
                       Price
                     </label>
-                    <input
-                      type="number"
-                      name="price"
-                      id="price"
-                      placeholder="0.00"
-                      className="bg-[#3a3a3a] border border-[#525252] text-[#f0f0f0] text-sm rounded-lg block w-full p-2.5 placeholder-[#888888]"
-                    />
+                    <div className="relative">
+                      <input
+                        type="number"
+                        name="price"
+                        id="price"
+                        value={formData.price}
+                        onChange={handleInputChange}
+                        className={getInputClasses(!!formData.price)}
+                        placeholder="0.00"
+                        step="0.01"
+                        min="0"
+                        required
+                        autoComplete="off"
+                      />
+                      <span className="absolute right-3 top-1/2 -translate-y-1/2 text-white text-sm pointer-events-none">
+                        €
+                      </span>
+                    </div>
                   </div>
                 </div>
+
+                {/* Coffee Type Buttons */}
                 <div>
-                  <label htmlFor="type" className="block mb-2 text-sm font-medium text-[#b8b8b8]">
-                    Type
-                  </label>
+                  <label className={`${dmSans.className} block mb-2 text-sm font-normal text-[#b8b8b8]`}>Type</label>
                   <div className="flex gap-4 justify-center items-center">
                     <button
                       type="button"
-                      className="flex-1 text-white bg-[#454545] border border-[#5a5a5a] hover:bg-[#505050] font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                      onClick={() => handleTypeSelect("Arabica")}
+                      className={`flex-1 font-normal rounded-lg text-sm px-4 py-2 text-center transition-all ${
+                        selectedType === "Arabica"
+                          ? "bg-transparent text-white border-2 border-white"
+                          : "bg-transparent text-[#6b6b6b] border border-[#5a5a5a] hover:border-[#6a6a6a]"
+                      }`}
                     >
-                      Arabic
+                      Arabica
                     </button>
                     <button
                       type="button"
-                      className="flex-1 text-white bg-[#454545] border border-[#5a5a5a] hover:bg-[#505050] font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                      onClick={() => handleTypeSelect("Robusta")}
+                      className={`flex-1 font-normal rounded-lg text-sm px-4 py-2 text-center transition-all ${
+                        selectedType === "Robusta"
+                          ? "bg-transparent text-white border-2 border-white"
+                          : "bg-transparent text-[#6b6b6b] border border-[#5a5a5a] hover:border-[#6a6a6a]"
+                      }`}
                     >
                       Robusta
                     </button>
                   </div>
                 </div>
+
+                {/* Image */}
                 <div>
-                  <label
-                    htmlFor="urlimage"
-                    className="block mb-2 text-sm font-medium text-[#b8b8b8]"
-                  >
+                  <label htmlFor="imageUrl" className={`${dmSans.className} block mb-2 text-sm font-normal text-[#b8b8b8]`}>
                     Upload image
                   </label>
                   <input
                     type="url"
-                    name="image"
-                    id="urlimage"
-                    className="bg-[#3a3a3a] border border-[#525252] text-[#f0f0f0] text-sm rounded-lg block w-full p-2.5 placeholder-[#888888]"
+                    name="imageUrl"
+                    id="imageUrl"
+                    value={formData.imageUrl}
+                    onChange={handleInputChange}
+                    className={getInputClasses(!!formData.imageUrl)}
                     placeholder="Paste image URL here"
+                    required
+                    autoComplete="off"
                   />
                 </div>
+
+                {/* Description */}
                 <div>
-                  <label
-                    htmlFor="description"
-                    className="block mb-2 text-sm font-medium text-[#b8b8b8]"
-                  >
+                  <label htmlFor="description" className={`${dmSans.className} block mb-2 text-sm font-normal text-[#b8b8b8]`}>
                     Description
                   </label>
                   <input
                     type="text"
                     name="description"
                     id="description"
-                    className="bg-[#3a3a3a] border border-[#525252] text-[#f0f0f0] text-sm rounded-lg block w-full p-2.5 placeholder-[#888888]"
+                    value={formData.description}
+                    onChange={handleInputChange}
+                    className={getInputClasses(!!formData.description)}
                     placeholder="Add a description"
+                    required
+                    autoComplete="off"
                   />
                 </div>
-                <div className="flex gap-4 justify-center items-center pt-4">
+
+                {/* Action Buttons */}
+                <div className="flex gap-4 justify-center items-center pt-6 max-w-xs mx-auto">
                   <button
                     type="button"
-                    className="flex-1 text-white bg-[#4a4a4a] hover:bg-[#555555] font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                    onClick={handleDiscard}
+                    disabled={isSubmitting}
+                    className="text-white border border-[#ba8039] hover:bg-[#3a3a3a] hover:cursor-pointer font-normal rounded-full text-sm px-8 py-3 text-center disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                   >
                     Discard
                   </button>
                   <button
                     type="submit"
-                    className="flex-1 text-white bg-[#4a4a4a] hover:bg-[#555555] font-medium rounded-lg text-sm px-5 py-2.5 text-center">
-                    Confirm
+                    disabled={isSubmitting || !formData.name || !formData.description || !formData.price || !formData.imageUrl || !selectedType}
+                    className="text-white bg-[#ba8039] hover:bg-[#a56f30] hover:cursor-pointer font-normal rounded-full text-sm px-8 py-3 text-center disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                  >
+                    {isSubmitting ? "Creating..." : "Confirm"}
                   </button>
                 </div>
               </form>
+            </div>
+
+            {/* Beans Decoration */}
+            <div className="absolute bottom-7 -left-25 pointer-events-none z-0">
+              <Image
+                src={Beans}
+                width={250}
+                height={168}
+                alt="beans"
+                className="rotate-20"
+              />
             </div>
           </div>
         </div>
