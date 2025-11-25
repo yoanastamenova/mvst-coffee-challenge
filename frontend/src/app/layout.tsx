@@ -1,6 +1,5 @@
 import './globals.css'
 import { Bebas_Neue, Inter } from 'next/font/google'
-import Background from '@/components/Background'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -27,8 +26,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={bebasNeue.variable}>
-      <body className={`${inter.className} overflow-x-hidden`}>
-        <Background />
+      <body className={`${inter.className} overflow-x-hidden bg-background-primary`}>
         <main className="overflow-x-hidden">
           {children}
         </main>

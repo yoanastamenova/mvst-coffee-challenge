@@ -83,7 +83,7 @@ export default function Home() {
         </div>
       </section>
       {/* MVST Text + Button Group */}
-      <section className="mb-10 mt-15 md:mt-30 px-4">
+      <section className="mb-10 mt-20 md:mt-30 px-4">
         <h4
           className={`${bebas.className} text-3xl sm:text-4xl md:text-[50px] font-normal leading-tight md:leading-[110px] text-white flex justify-center text-center`}
         >
@@ -133,7 +133,7 @@ export default function Home() {
       </section>
       {/* Footer Section */}
       <section className="mt-40 overflow-hidden">
-        <div className="relative w-full h-[300px] sm:h-[400px] md:h-[500px] overflow-hidden">
+        <div className="relative w-full h-[100px] sm:h-[400px] md:h-[500px] overflow-hidden">
           <div
             className="absolute bottom-0 w-full h-[70%]"
             style={{
@@ -173,7 +173,6 @@ export default function Home() {
             }}
           />
           {/* Footer SVG */}
-
           <div className="relative z-10 flex justify-center items-center h-full px-4">
             <Image
               alt="MVST footer"
@@ -183,14 +182,13 @@ export default function Home() {
               className="w-full max-w-[450px] sm:max-w-[550px] md:max-w-[650px] lg:max-w-[700px] h-auto"
             />
           </div>
-
           <div
             className="absolute inset-0 w-full h-full z-20 pointer-events-none"
             style={{
               backgroundImage: `url(${Beans.src})`,
               backgroundRepeat: "repeat",
               backgroundSize: "220px auto",
-              backgroundPosition: "-20px 40px",
+              backgroundPosition: "-60px 40px",
             }}
           />
         </div>
