@@ -9,7 +9,7 @@ import Beans from "../../public/beans.png";
 import Button from "@/components/Button";
 import { Poppins, Bebas_Neue } from "next/font/google";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Alert from "@/components/Alert";
 import { Navbar } from "@/components/Navbar";
@@ -17,12 +17,23 @@ import { Navbar } from "@/components/Navbar";
 const poppins = Poppins({ weight: ["300", "400"], subsets: ["latin"] });
 const bebas = Bebas_Neue({ weight: ["400"], subsets: ["latin"] });
 
-export default function Home() {
-  const [coffees, setCoffees] = useState<Coffee[]>([]);
-  const [selectedType, setSelectedType] = useState<string>("All");
+function AlertHandler() {
   const [showAlert, setShowAlert] = useState(false);
   const searchParams = useSearchParams();
   const errorType = searchParams.get("error");
+
+  useEffect(() => {
+    if (errorType === "name-exists") {
+      setShowAlert(true);
+    }
+  }, [errorType]);
+
+  return showAlert ? <Alert onClose={() => setShowAlert(false)} /> : null;
+}
+
+export default function Home() {
+  const [coffees, setCoffees] = useState<Coffee[]>([]);
+  const [selectedType, setSelectedType] = useState<string>("All");
 
   useEffect(() => {
     const fetchCoffees = async () => {
@@ -33,12 +44,6 @@ export default function Home() {
     fetchCoffees();
   }, []);
 
-  useEffect(() => {
-    if (errorType === "name-exists") {
-      setShowAlert(true);
-    }
-  }, [errorType]);
-
   const filteredCoffees =
     selectedType === "All"
       ? coffees
@@ -47,7 +52,9 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      {showAlert && <Alert onClose={() => setShowAlert(false)} />}
+      <Suspense fallback={null}>
+        <AlertHandler />
+      </Suspense>
       {/* Hero Section */}
       <section className="relative h-[500px] sm:h-[600px] md:h-[700px] lg:h-[800px] max-w-full overflow-x-hidden" aria-label="Hero section with roasted coffee introduction">
         <div className="absolute inset-0 after:content-[''] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-32 after:bg-linear-to-t after:from-background-primary after:to-transparent after:pointer-events-none after:z-10">

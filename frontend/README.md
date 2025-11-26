@@ -29,6 +29,12 @@ This is the frontend of the MVST Coffee Challenge. Built with Next.js framework 
 - **TailwindCSS**: Utility-first CSS framework that simplifies styling without component libraries
 - **TypeScript**: Type safety and better developer experience
 
+## Deployment
+
+**Deployed on Vercel:** [🚀 Click to view 🚀](https://mvst-coffee-challenge-omega.vercel.app/)
+
+**IMPORTANT:** The deployed frontend shows only a static UX/UI Next view and does not load any content due to missing backend deployment
+
 ## Local Installation
 
 ### Prerequisites
