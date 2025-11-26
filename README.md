@@ -101,15 +101,32 @@ So you are finished and feel like showing us some more? Here are a few things th
 
 ## Feedback
 
----
+The challenge is interesting and definitely suitable for the position. I was able to successfully completed all core requirements including
+some of the extra points such as SEO check and deployment. Here are some of the points I would like to mention.
+
+Things that I liked and helped me a lot:
+1. Clear backend setup and DB script to help you
+2. Great task description for structuring the DB
+3. Freedom to choose what to use
+4. Transparency about evaluation criteria - knowing what will be checked helps focus efforts
+
+
+There are a few things I would like to note as I changed them due to my personal vision but i think they should be changed for the future too.
+ 1. The type of coffee should be "Arabica" and not "Arabic". It could be a typo but it's important to be changed.
+ 2. All the typography, colors etc should be given as tokens if there is a Figma design in my opinion. For example, the spacing 
+ was difficult to find
+ 3. The versions of both the frontend and the backend should be updated to their recent versions as for me it took quite some time finding where the parsing errors are coming from in the frontend which turned out to be the different approach for the linter in Next>15
+ 4. The description for the coffee validation in the readme says it should be made in the frontend BEFORE adding a coffee but then the design
+ shows the banner on the home page which makes a confusion if the form should be submitted or not
+
 
 ### What would you improve if given more time?
 
-Please fill
+I would probably include animations with GSAP or Framer Motion and add testing both unit and e2e.
 
 ### How was your experience doing this challenge?
 
-Please fill
+Challenging for someone who is not that much experienced with Figma and especially Figma without dev mode, but overall good.
 
 ---
 

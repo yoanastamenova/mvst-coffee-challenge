@@ -91,7 +91,6 @@ npm run dev
 - Duplicate name validation (shows alert if name exists)
 - Mobile-responsive design
 
-
 ## Future Improvements
 
 - [ ] Add comprehensive unit and e2e tests
@@ -99,7 +98,6 @@ npm run dev
 - [ ] Implement pagination for coffee list
 - [ ] Add delete/edit functionality for coffees
 - [ ] Containerize the application (Dockerfile)
-
 
 
 ### Contact
