@@ -10,8 +10,7 @@
   /* Accent colors */
   --color-accent-primary: #C9995B;
   --color-accent-secondary: #ba8039;
-  --color-accent-hover: #D4A574;
-  --color-accent-hover-secondary: #a56f30;
+  --color-accent-hover: #a56f30;
   --color-accent-gold: #d3ad7f;
 
   /* Badge colors */
@@ -37,15 +36,14 @@
 }
 
 :root {
-  /* Make variables available globally */
+  /* Global variables */
   --color-background-primary: #101011;
   --color-background-secondary: #2A2A2A;
   --color-background-card: #191919;
   --color-background-form: #2d2d2d;
   --color-accent-primary: #C9995B;
   --color-accent-secondary: #ba8039;
-  --color-accent-hover: #D4A574;
-  --color-accent-hover-secondary: #a56f30;
+  --color-accent-hover: #a56f30;
   --color-accent-gold: #d3ad7f;
   --color-badge-popular: #5DA5A5;
   --color-badge-category: #3A3A3A;

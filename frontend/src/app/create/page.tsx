@@ -51,7 +51,6 @@ export default function CreatePage() {
       alert("Please fill in all fields");
       return;
     }
-
     setIsSubmitting(true);
 
     try {
@@ -91,10 +90,10 @@ export default function CreatePage() {
   };
 
   const getInputClasses = (hasValue: boolean) => {
-    return `${dmSans.className} w-full px-3 py-2 text-sm rounded-lg border border-border-primary bg-background-form transition-colors duration-200 outline-none focus:outline-none focus:ring-0 ${
-      hasValue
-        ? "text-text-primary"
-        : "text-text-gray"
+    return `${
+      dmSans.className
+    } w-full px-3 py-2 text-sm rounded-lg border border-border-primary bg-background-form transition-colors duration-200 outline-none focus:outline-none focus:ring-0 ${
+      hasValue ? "text-text-primary" : "text-text-gray"
     } placeholder-text-placeholder`;
   };
 
@@ -126,14 +125,22 @@ export default function CreatePage() {
 
             {/* Title */}
             <div className="p-8 py-20 space-y-6 sm:p-10 sm:py-16 md:px-16 lg:px-20">
-              <h1 className={`${bebas.className} text-5xl font-bold text-text-primary text-center`}>
+              <h1
+                className={`${bebas.className} text-5xl font-bold text-text-primary text-center`}
+              >
                 CREATE NEW
               </h1>
-              <form onSubmit={handleSubmit} className="space-y-5 max-w-md mx-auto">
+              <form
+                onSubmit={handleSubmit}
+                className="space-y-5 max-w-md mx-auto"
+              >
                 {/* Name and Price */}
                 <div className="flex flex-col sm:flex-row sm:items-end gap-4">
                   <div className="flex-1 w-full sm:w-auto">
-                    <label htmlFor="name" className={`${dmSans.className} block mb-2 text-sm font-normal text-text-label`}>
+                    <label
+                      htmlFor="name"
+                      className={`${dmSans.className} block mb-2 text-sm font-normal text-text-label`}
+                    >
                       Name
                     </label>
                     <input
@@ -149,7 +156,10 @@ export default function CreatePage() {
                     />
                   </div>
                   <div className="w-full sm:w-28">
-                    <label htmlFor="price" className={`${dmSans.className} block mb-2 text-sm font-normal text-text-label`}>
+                    <label
+                      htmlFor="price"
+                      className={`${dmSans.className} block mb-2 text-sm font-normal text-text-label`}
+                    >
                       Price
                     </label>
                     <div className="relative">
@@ -175,7 +185,11 @@ export default function CreatePage() {
 
                 {/* Coffee Type Buttons */}
                 <div>
-                  <label className={`${dmSans.className} block mb-2 text-sm font-normal text-text-label`}>Type</label>
+                  <label
+                    className={`${dmSans.className} block mb-2 text-sm font-normal text-text-label`}
+                  >
+                    Type
+                  </label>
                   <div className="flex gap-4 justify-center items-center">
                     <button
                       type="button"
@@ -204,7 +218,10 @@ export default function CreatePage() {
 
                 {/* Image */}
                 <div>
-                  <label htmlFor="imageUrl" className={`${dmSans.className} block mb-2 text-sm font-normal text-text-label`}>
+                  <label
+                    htmlFor="imageUrl"
+                    className={`${dmSans.className} block mb-2 text-sm font-normal text-text-label`}
+                  >
                     Upload image
                   </label>
                   <input
@@ -222,7 +239,10 @@ export default function CreatePage() {
 
                 {/* Description */}
                 <div>
-                  <label htmlFor="description" className={`${dmSans.className} block mb-2 text-sm font-normal text-text-label`}>
+                  <label
+                    htmlFor="description"
+                    className={`${dmSans.className} block mb-2 text-sm font-normal text-text-label`}
+                  >
                     Description
                   </label>
                   <input
@@ -252,10 +272,17 @@ export default function CreatePage() {
                   </button>
                   <button
                     type="submit"
-                    disabled={isSubmitting || !formData.name || !formData.description || !formData.price || !formData.imageUrl || !selectedType}
-                    className="text-text-primary bg-accent-secondary hover:bg-accent-hover-secondary hover:cursor-pointer
+                    disabled={
+                      isSubmitting ||
+                      !formData.name ||
+                      !formData.description ||
+                      !formData.price ||
+                      !formData.imageUrl ||
+                      !selectedType
+                    }
+                    className="text-text-primary bg-accent-secondary hover:bg-accent-hover hover:cursor-pointer
                     font-normal rounded-full text-sm px-8 py-3 text-center disabled:opacity-50
-                    w-full sm:w-28 disabled:cursor-not-allowed transition-all"
+                    w-full sm:w-28 transition-all"
                   >
                     {isSubmitting ? "Creating..." : "Confirm"}
                   </button>

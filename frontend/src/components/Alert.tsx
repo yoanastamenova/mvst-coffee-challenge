@@ -6,7 +6,7 @@ interface AlertProps {
   onClose: () => void;
 }
 
-export default function Alert({onClose }: AlertProps) {
+export default function Alert({ onClose }: AlertProps) {
   const router = useRouter();
 
   const handleClose = () => {
@@ -45,13 +45,14 @@ export default function Alert({onClose }: AlertProps) {
         </div>
 
         {/* Alert text */}
-<p className="text-text-primary text-sm font-normal min-w-0 max-w-[200px]">
-            A coffee with the same name already exists</p>
+        <p className="text-text-primary text-sm font-normal min-w-0 max-w-[200px]">
+          A coffee with the same name already exists
+        </p>
 
         {/* Close Button */}
         <button
           onClick={handleClose}
-          className="shrink-0 text-text-primary hover:text-text-gray transition-colors"
+          className="shrink-0 text-text-primary hover:text-text-gray hover:cursor-pointer transition-colors"
           aria-label="Close alert"
         >
           <svg

@@ -13,7 +13,7 @@ export const Navbar = () => {
           alt="Header Logo"
         />
       </Link>
-      <Link href="/create" className="hover:opacity-80 block">
+      <Link href="/create" className="block">
         <Button className="mr-6 md:mr-20">Create</Button>
       </Link>
     </nav>

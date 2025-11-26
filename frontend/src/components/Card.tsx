@@ -16,7 +16,8 @@ const poppins = Poppins({
 });
 
 export const Card = ({ name, description, price, imageUrl, type }: Props) => {
-  const buttonBg = type === "Arabica" ? "bg-badge-popular" : "bg-badge-category";
+  const buttonBg =
+    type === "Arabica" ? "bg-badge-popular" : "bg-badge-category";
 
   return (
     <div className="bg-background-card w-full h-[470px] rounded-md overflow-hidden flex flex-col">
