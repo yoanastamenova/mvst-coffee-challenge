@@ -16,7 +16,7 @@ export default function Alert({onClose }: AlertProps) {
 
   return (
     <div className="fixed top-15 right-15 z-50 lg:right-6 md:right-6">
-      <div className="bg-red-500 rounded-lg shadow-lg px-4 py-3 flex items-center gap-3 min-w-[300px] max-w-[400px]">
+      <div className="bg-error rounded-lg shadow-lg px-4 py-3 flex items-center gap-3 min-w-[300px] max-w-[400px]">
         {/* Alert Icon */}
         <div className="shrink-0">
           <svg
@@ -45,13 +45,13 @@ export default function Alert({onClose }: AlertProps) {
         </div>
 
         {/* Alert text */}
-<p className="text-white text-sm font-normal min-w-0 max-w-[200px]">
+<p className="text-text-primary text-sm font-normal min-w-0 max-w-[200px]">
             A coffee with the same name already exists</p>
 
         {/* Close Button */}
         <button
           onClick={handleClose}
-          className="shrink-0 text-white hover:text-gray-200 transition-colors"
+          className="shrink-0 text-text-primary hover:text-text-gray transition-colors"
           aria-label="Close alert"
         >
           <svg

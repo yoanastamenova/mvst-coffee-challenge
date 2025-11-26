@@ -61,14 +61,14 @@ export default function Home() {
         <div className="relative z-20 pt-15 h-full flex items-center justify-center md:justify-start px-6 sm:px-10 md:px-16 lg:px-20 overflow-hidden min-w-0">
           <div className="w-full md:max-w-[680px] text-center md:text-left mt-10 md:ml-10 min-w-0 flex flex-col items-center md:items-start">
             <h1
-              className={`${bebas.className} text-7xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[130px] font-normal leading-tight text-white mb-4
+              className={`${bebas.className} text-7xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[130px] font-normal leading-tight text-text-primary mb-4
                       w-full max-w-[220px] sm:max-w-none`}
             >
               ROASTED COFFEE
             </h1>
 
             <p
-              className={`${poppins.className} text-[#938E8E] text-sm sm:text-sm md:text-base lg:text-lg font-light leading-relaxed mb-4
+              className={`${poppins.className} text-text-tertiary text-sm sm:text-sm md:text-base lg:text-lg font-light leading-relaxed mb-4
                       w-full max-w-[200px] sm:max-w-none wrap-break-word whitespace-normal text-balance`}
             >
               Choose a coffee from below or create your own.
@@ -85,7 +85,7 @@ export default function Home() {
       {/* MVST Text + Button Group */}
       <section className="mb-10 mt-20 md:mt-30 px-4" aria-label="Coffee type filter">
         <h2
-          className={`${bebas.className} text-3xl sm:text-4xl md:text-[50px] font-normal leading-tight md:leading-[110px] text-white flex justify-center text-center`}
+          className={`${bebas.className} text-3xl sm:text-4xl md:text-[50px] font-normal leading-tight md:leading-[110px] text-text-primary flex justify-center text-center`}
         >
           MVST. EXCLUSIVE COFFEE
         </h2>
@@ -104,8 +104,8 @@ export default function Home() {
                   poppins.className
                 } flex-1 text-base font-normal rounded-[33px] hover:cursor-pointer transition-all duration-200 ${
                   selectedType === type
-                    ? "bg-white text-black"
-                    : "text-white/60 hover:text-white"
+                    ? "bg-text-primary text-black"
+                    : "text-text-primary/60 hover:text-text-primary"
                 }`}
                 aria-pressed={selectedType === type}
                 aria-label={`Filter by ${type} coffee`}

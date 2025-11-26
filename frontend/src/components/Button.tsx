@@ -13,7 +13,7 @@ export default function Button({
 }: ButtonProps) {
   return (
     <button
-      className={`${poppins.className} text-white text-sm rounded-3xl py-3 px-8 bg-[#ba8039] hover:bg-yellow-700 hover:cursor-pointer hover:scale-105 transition-all duration-300 shadow-2xl ${className}`}
+      className={`${poppins.className} text-text-primary text-sm rounded-3xl py-3 px-8 bg-accent-secondary hover:bg-accent-hover hover:cursor-pointer hover:scale-105 transition-all duration-300 shadow-2xl ${className}`}
       {...props}
     >
       {children}

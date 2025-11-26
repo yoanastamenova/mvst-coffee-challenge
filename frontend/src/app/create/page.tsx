@@ -91,22 +91,22 @@ export default function CreatePage() {
   };
 
   const getInputClasses = (hasValue: boolean) => {
-    return `${dmSans.className} w-full px-3 py-2 text-sm rounded-lg border border-[#838382] bg-[#2d2d2d] transition-colors duration-200 outline-none focus:outline-none focus:ring-0 ${
+    return `${dmSans.className} w-full px-3 py-2 text-sm rounded-lg border border-border-primary bg-background-form transition-colors duration-200 outline-none focus:outline-none focus:ring-0 ${
       hasValue
-        ? "text-white"
-        : "text-[#9ca3af]"
-    } placeholder-[#888888]`;
+        ? "text-text-primary"
+        : "text-text-gray"
+    } placeholder-text-placeholder`;
   };
 
   return (
     <>
       <section className="min-h-screen relative overflow-hidden">
         <div className="flex flex-col items-center justify-center px-4 sm:px-12 py-12 mx-auto min-h-screen lg:py-0">
-          <div className="w-full min-h-[700px] bg-transparent sm:bg-[#191919] shadow-none sm:shadow-xl border-none sm:border-[#838382] md:mt-0 sm:max-w-xl lg:max-w-2xl xl:p-0 relative overflow-hidden">
+          <div className="w-full min-h-[700px] bg-transparent sm:bg-background-card shadow-none sm:shadow-xl border-none sm:border-border-primary md:mt-0 sm:max-w-xl lg:max-w-2xl xl:p-0 relative overflow-hidden">
             {/* X button */}
             <button
               onClick={handleDiscard}
-              className="absolute top-6 right-6 text-white hover:text-gray-300 transition-colors z-20 hover:cursor-pointer"
+              className="absolute top-6 right-6 text-text-primary hover:text-text-gray transition-colors z-20 hover:cursor-pointer"
               aria-label="Close"
             >
               <svg
@@ -126,14 +126,14 @@ export default function CreatePage() {
 
             {/* Title */}
             <div className="p-8 py-20 space-y-6 sm:p-10 sm:py-16 md:px-16 lg:px-20">
-              <h1 className={`${bebas.className} text-5xl font-bold text-white text-center`}>
+              <h1 className={`${bebas.className} text-5xl font-bold text-text-primary text-center`}>
                 CREATE NEW
               </h1>
               <form onSubmit={handleSubmit} className="space-y-5 max-w-md mx-auto">
                 {/* Name and Price */}
                 <div className="flex flex-col sm:flex-row sm:items-end gap-4">
                   <div className="flex-1 w-full sm:w-auto">
-                    <label htmlFor="name" className={`${dmSans.className} block mb-2 text-sm font-normal text-[#b8b8b8]`}>
+                    <label htmlFor="name" className={`${dmSans.className} block mb-2 text-sm font-normal text-text-label`}>
                       Name
                     </label>
                     <input
@@ -149,7 +149,7 @@ export default function CreatePage() {
                     />
                   </div>
                   <div className="w-full sm:w-28">
-                    <label htmlFor="price" className={`${dmSans.className} block mb-2 text-sm font-normal text-[#b8b8b8]`}>
+                    <label htmlFor="price" className={`${dmSans.className} block mb-2 text-sm font-normal text-text-label`}>
                       Price
                     </label>
                     <div className="relative">
@@ -166,7 +166,7 @@ export default function CreatePage() {
                         required
                         autoComplete="off"
                       />
-                      <span className="absolute right-3 top-1/2 -translate-y-1/2 text-white text-sm pointer-events-none">
+                      <span className="absolute right-3 top-1/2 -translate-y-1/2 text-text-primary text-sm pointer-events-none">
                         €
                       </span>
                     </div>
@@ -175,15 +175,15 @@ export default function CreatePage() {
 
                 {/* Coffee Type Buttons */}
                 <div>
-                  <label className={`${dmSans.className} block mb-2 text-sm font-normal text-[#b8b8b8]`}>Type</label>
+                  <label className={`${dmSans.className} block mb-2 text-sm font-normal text-text-label`}>Type</label>
                   <div className="flex gap-4 justify-center items-center">
                     <button
                       type="button"
                       onClick={() => handleTypeSelect("Arabica")}
                       className={`flex-1 font-normal rounded-lg text-sm px-4 py-2 text-center transition-all ${
                         selectedType === "Arabica"
-                          ? "bg-transparent text-white border-2 border-white"
-                          : "bg-transparent text-[#6b6b6b] border border-[#5a5a5a] hover:border-[#6a6a6a]"
+                          ? "bg-transparent text-text-primary border-2 border-text-primary"
+                          : "bg-transparent text-text-secondary border border-border-secondary hover:border-border-hover"
                       }`}
                     >
                       Arabica
@@ -193,8 +193,8 @@ export default function CreatePage() {
                       onClick={() => handleTypeSelect("Robusta")}
                       className={`flex-1 font-normal rounded-lg text-sm px-4 py-2 text-center transition-all ${
                         selectedType === "Robusta"
-                          ? "bg-transparent text-white border-2 border-white"
-                          : "bg-transparent text-[#6b6b6b] border border-[#5a5a5a] hover:border-[#6a6a6a]"
+                          ? "bg-transparent text-text-primary border-2 border-text-primary"
+                          : "bg-transparent text-text-secondary border border-border-secondary hover:border-border-hover"
                       }`}
                     >
                       Robusta
@@ -204,7 +204,7 @@ export default function CreatePage() {
 
                 {/* Image */}
                 <div>
-                  <label htmlFor="imageUrl" className={`${dmSans.className} block mb-2 text-sm font-normal text-[#b8b8b8]`}>
+                  <label htmlFor="imageUrl" className={`${dmSans.className} block mb-2 text-sm font-normal text-text-label`}>
                     Upload image
                   </label>
                   <input
@@ -222,7 +222,7 @@ export default function CreatePage() {
 
                 {/* Description */}
                 <div>
-                  <label htmlFor="description" className={`${dmSans.className} block mb-2 text-sm font-normal text-[#b8b8b8]`}>
+                  <label htmlFor="description" className={`${dmSans.className} block mb-2 text-sm font-normal text-text-label`}>
                     Description
                   </label>
                   <input
@@ -244,7 +244,7 @@ export default function CreatePage() {
                     type="button"
                     onClick={handleDiscard}
                     disabled={isSubmitting}
-                    className="text-white border border-[#ba8039] hover:bg-[#3a3a3a] 
+                    className="text-text-primary border border-accent-secondary hover:bg-badge-category
                     hover:cursor-pointer font-normal rounded-full text-sm px-8 py-3
                     w-full sm:w-28 text-center disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                   >
@@ -253,8 +253,8 @@ export default function CreatePage() {
                   <button
                     type="submit"
                     disabled={isSubmitting || !formData.name || !formData.description || !formData.price || !formData.imageUrl || !selectedType}
-                    className="text-white bg-[#ba8039] hover:bg-[#a56f30] hover:cursor-pointer 
-                    font-normal rounded-full text-sm px-8 py-3 text-center disabled:opacity-50 
+                    className="text-text-primary bg-accent-secondary hover:bg-accent-hover-secondary hover:cursor-pointer
+                    font-normal rounded-full text-sm px-8 py-3 text-center disabled:opacity-50
                     w-full sm:w-28 disabled:cursor-not-allowed transition-all"
                   >
                     {isSubmitting ? "Creating..." : "Confirm"}

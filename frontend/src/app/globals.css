@@ -1,12 +1,63 @@
 @import "tailwindcss";
 
 @theme {
+  /* Background colors */
   --color-background-primary: #101011;
   --color-background-secondary: #2A2A2A;
+  --color-background-card: #191919;
+  --color-background-form: #2d2d2d;
+
+  /* Accent colors */
   --color-accent-primary: #C9995B;
+  --color-accent-secondary: #ba8039;
   --color-accent-hover: #D4A574;
-  --color-badge-popular: #5BA4A4;
+  --color-accent-hover-secondary: #a56f30;
+  --color-accent-gold: #d3ad7f;
+
+  /* Badge colors */
+  --color-badge-popular: #5DA5A5;
+  --color-badge-category: #3A3A3A;
+
+  /* Text colors */
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #6b6b6b;
+  --color-text-tertiary: #938E8E;
+  --color-text-gray: #9ca3af;
+  --color-text-placeholder: #888888;
+  --color-text-label: #b8b8b8;
+
+  /* Border colors */
+  --color-border-primary: #838382;
+  --color-border-secondary: #5a5a5a;
+  --color-border-hover: #6a6a6a;
+
+  /* Status colors */
+  --color-error: #ef4444;
+  --color-error-hover: #dc2626;
+}
+
+:root {
+  /* Make variables available globally */
+  --color-background-primary: #101011;
+  --color-background-secondary: #2A2A2A;
+  --color-background-card: #191919;
+  --color-background-form: #2d2d2d;
+  --color-accent-primary: #C9995B;
+  --color-accent-secondary: #ba8039;
+  --color-accent-hover: #D4A574;
+  --color-accent-hover-secondary: #a56f30;
+  --color-accent-gold: #d3ad7f;
+  --color-badge-popular: #5DA5A5;
   --color-badge-category: #3A3A3A;
   --color-text-primary: #FFFFFF;
-  --color-text-secondary: rgba(255, 255, 255, 0.6);
+  --color-text-secondary: #6b6b6b;
+  --color-text-tertiary: #938E8E;
+  --color-text-gray: #9ca3af;
+  --color-text-placeholder: #888888;
+  --color-text-label: #b8b8b8;
+  --color-border-primary: #838382;
+  --color-border-secondary: #5a5a5a;
+  --color-border-hover: #6a6a6a;
+  --color-error: #ef4444;
+  --color-error-hover: #dc2626;
 }
